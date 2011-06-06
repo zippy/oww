@@ -1,0 +1,7 @@
+h1. OWW Engine
+
+
+h2. License
+
+The OWW Engine ©2011 Harris-Braun Enterprises, LLC all rights reserved.
+OWW Engine is released under the GNU Public License, see: http://www.gnu.org/licenses/gpl-3.0-standalone.html
