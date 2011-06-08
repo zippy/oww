@@ -1,0 +1,28 @@
+%p
+  %b Title:
+  = @submission.title
+%p
+  %b User:
+  = @submission.user.name
+%p
+  %b Kind:
+  = @submission.kind
+%p
+  %b Genre:
+  = @submission.genre
+%p
+  %b Audience:
+  = @submission.audience
+%p
+  %b Status:
+  = @submission.status
+%p
+  %b Author notes:
+  = @submission.author_notes
+%p
+  %b Submission:
+  = @submission.submission
+
+= link_to 'Edit', edit_submission_path(@submission)
+\|
+= link_to 'Back', submissions_path

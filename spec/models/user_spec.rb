@@ -99,5 +99,21 @@ describe User do
     end
 
   end
+  
+  describe "relations" do
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+    it "should be able to have many submissions" do
+      @sub = Factory(:submission)
+      @user.submissions << @sub
+      @user.submissions.should == [@sub]
+    end
+    it "should be able to belong to many shops" do
+      @shop = Factory(:shop)
+      @user.shops << @shop
+      @user.shops.should == [@shop]
+    end
+  end
 
 end

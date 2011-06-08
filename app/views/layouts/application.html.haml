@@ -9,6 +9,7 @@
     %ul.hmenu
       = render 'devise/menu/registration_items'
       = render 'devise/menu/login_items'
+
     - flash.each do |name, msg|
       = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
     = yield

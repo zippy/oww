@@ -9,5 +9,7 @@ class User
 #  validates_presence_of :name
   validates_uniqueness_of :email, :case_sensitive => false
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  has_many :submissions
+  has_and_belongs_to_many :shops
 end
 

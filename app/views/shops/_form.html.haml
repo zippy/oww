@@ -1,0 +1,16 @@
+= form_for @shop do |f|
+  -if @shop.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@shop.errors.count, "error")} prohibited this workshop from being saved:"
+      %ul
+        - @shop.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :points_to_submit
+    = f.number_field :points_to_submit
+  .actions
+    = f.submit @shop.persisted? ? 'Update' : 'Create'

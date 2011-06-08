@@ -1,0 +1,31 @@
+= form_for @submission do |f|
+  -if @submission.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@submission.errors.count, "error")} prohibited this submission from being saved:"
+      %ul
+        - @submission.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :kind
+    = f.select :kind, Submission::KindSelect
+  .field
+    = f.label :genre
+    = f.select :genre, Submission::GenreSelect
+  .field
+    = f.label :audience
+    = f.select :audience, Submission::AudienceSelect
+  .field
+    = f.label :status
+    = f.select :status, Submission::StatusSelect
+  .field
+    = f.label :author_notes
+    = f.text_area :author_notes
+  .field
+    = f.label :submission
+    = f.text_area :submission
+  .actions
+    = f.submit @submission.persisted? ? 'Update Submission' : 'Post Submission'

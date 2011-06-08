@@ -32,7 +32,7 @@ Given /^I am signed up as "(.*)\/(.*)"$/ do |email, password|
   And %{I fill in "Password" with "#{password}"}
   And %{I fill in "Password confirmation" with "#{password}"}
   And %{I press "Sign up"}
-  Then %{I should see "You have signed up successfully. If enabled, a confirmation was sent to your e-mail."}
+  Then %{I should see "You have signed up successfully."}
   And %{I am logout}
 end
 
@@ -68,4 +68,9 @@ end
 
 Given /^I am not logged in$/ do
   visit('/users/sign_out') # ensure that at least
+end
+
+Given /^a logged in user$/ do
+  Given %{I am signed up as "joe@email.com/password"}
+  Given %{I sign in as "joe@email.com/password"}
 end

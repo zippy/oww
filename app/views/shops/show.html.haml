@@ -1,0 +1,13 @@
+%p
+  %b Name:
+  = @shop.name
+%p
+  %b Points to submit:
+  = @shop.points_to_submit
+%p
+  %b Dimensions:
+  = @shop.dimensions
+
+= link_to 'Edit', edit_shop_path(@shop)
+\|
+= link_to 'Back', shops_path

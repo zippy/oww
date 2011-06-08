@@ -10,13 +10,30 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
-
     when /the sign up page/
       '/users/sign_up'
-
     when /the sign in page/
       '/users/sign_in'
 
+    when /the dashboard page/
+      '/dashboard'
+
+    when /the submissions page/
+      '/submissions'
+    when /the new submissions page/
+      '/submission/new'
+    when /the submission page for "([^\"]*)"/
+      s = Submission.first(conditions: { title: $1 })
+      "/submissions/#{s.id}"
+
+    when /the shops page/
+      '/shops'
+    when /the new shops page/
+      '/submission/new'
+    when /the shop page for "([^\"]*)"/
+      s = Shop.first(conditions: { name: $1 })
+      "/shops/#{s.id}"
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

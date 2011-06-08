@@ -1,0 +1,23 @@
+%h1 Listing shops
+
+%table
+  %tr
+    %th Name
+    %th Points to submit
+    %th Dimensions
+    %th
+    %th
+    %th
+
+  - @shops.each do |shop|
+    %tr
+      %td= shop.name
+      %td= shop.points_to_submit
+      %td= shop.dimensions
+      %td= link_to 'Show', shop
+      %td= link_to 'Edit', edit_shop_path(shop)
+      %td= link_to 'Destroy', shop, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Workshop', new_shop_path
