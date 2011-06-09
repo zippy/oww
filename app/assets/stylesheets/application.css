@@ -13,6 +13,13 @@ ul.hmenu {
 ul.hmenu li {
   display: inline;
 }
+ul.hmenu li a.active {
+  background: gray; color: white;
+  -moz-border-radius:5px 5px 0px 0px;
+  border-radius:5px 5px 0px 0px;
+  padding: 4px;
+}
+
 #flash_notice, #flash_alert {
   padding: 5px 8px;
   margin: 10px 0;
@@ -25,4 +32,3 @@ ul.hmenu li {
   background-color: #FCC;
   border: solid 1px #C66;
 }
-

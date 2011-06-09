@@ -17,7 +17,7 @@
   - @submissions.each do |submission|
     %tr
       %td= submission.title
-      %td= submission.user_id
+      %td= submission.user.name
       %td= submission.kind
       %td= submission.genre
       %td= submission.audience

@@ -3,9 +3,9 @@ Feature: Submissions
   I want to post my writing
   So that people can review it
 
-	Background: 
-		Given a logged in user
-		And a shop "OWW" with "4" points to submit
+    Background: 
+      Given a logged in user
+      And a shop "OWW" with "4" points to submit
 
     Scenario: User posts writing and sees point count go down and the submission in dashboard and submissions browser.
         When I go to the submissions page

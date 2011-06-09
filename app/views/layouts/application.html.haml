@@ -9,6 +9,8 @@
     %ul.hmenu
       = render 'devise/menu/registration_items'
       = render 'devise/menu/login_items'
+      %li= nav_link 'Submissions', submissions_path, 'Browse submissions'
+      %li= nav_link 'Dashboard', dashboard_path,'View your current account settings, submissions and reviews'
 
     - flash.each do |name, msg|
       = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
