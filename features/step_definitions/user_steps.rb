@@ -74,3 +74,13 @@ Given /^a logged in user$/ do
   Given %{I am signed up as "joe@email.com/password"}
   Given %{I sign in as "joe@email.com/password"}
 end
+
+Given /^a logged in user in the default shop$/ do
+  Given %{I am signed up as "joe@email.com/password"}
+  Given %{I sign in as "joe@email.com/password"}
+  u = User.find(:first, :conditions => { :email => 'joe@email.com' })
+  s = Shop.find(:first)
+  raise "no shop to put user in!" if s.nil?
+  u.shops << s
+  u.adjust_points_for(s,:reviewing)
+end

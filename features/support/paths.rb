@@ -25,6 +25,9 @@ module NavigationHelpers
     when /the submission page for "([^\"]*)"/
       s = Submission.first(conditions: { title: $1 })
       "/submissions/#{s.id}"
+    when /the edit submission page for "([^\"]*)"/
+      s = Submission.first(conditions: { title: $1 })
+      "/submissions/#{s.id}/edit"
 
     when /the shops page/
       '/shops'

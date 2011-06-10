@@ -100,19 +100,42 @@ describe User do
 
   end
   
-  describe "relations" do
+  describe "submission relations" do
     before(:each) do
       @user = User.create!(@attr)
+      @sub = Factory(:submission)
     end
     it "should be able to have many submissions" do
-      @sub = Factory(:submission)
       @user.submissions << @sub
       @user.submissions.should == [@sub]
     end
-    it "should be able to belong to many shops" do
+  end
+  
+  describe "shop relations" do
+    
+    before(:each) do
       @shop = Factory(:shop)
+      @user = User.create!(@attr)
       @user.shops << @shop
+    end
+    it "should be able to belong to many shops" do
       @user.shops.should == [@shop]
+    end
+    it "should start with undefined points in a shop" do
+      @user.points_in(@shop).should == nil
+    end
+    it "should get points for reviewing" do
+      @user.adjust_points_for(@shop,:reviewing)
+      @user.points_in(@shop).should == 4
+    end
+    it "should lose points for sumitting" do
+      @user.adjust_points_for(@shop,:reviewing)
+      @user.adjust_points_for(@shop,:submitting)
+      @user.points_in(@shop).should == 0      
+    end
+    it "should persist points" do
+      @user.adjust_points_for(@shop,:reviewing)
+      User.first.points_in(@shop).should == 4
     end
   end
 

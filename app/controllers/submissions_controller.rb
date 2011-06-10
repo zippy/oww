@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-  
+
   respond_to :html
   # GET /submissions
   def index
@@ -29,8 +29,9 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(params[:submission])
     @submission.user_id = current_user.id
-    @submission.shop = Shop.find(:first)
+    @submission.shop = current_shop
     if @submission.save
+      current_user.adjust_points_for(current_shop,:submitting)
       flash[:notice] = 'Submission was successfully created.'
     end
     respond_with @submission

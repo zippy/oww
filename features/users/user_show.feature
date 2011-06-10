@@ -5,5 +5,6 @@ Feature: Show Users
 
     Scenario: Viewing users
       Given I am a user named "foo" with an email "user@test.com" and password "please"
+      When I sign in as "user@test.com/please"
       When I go to the homepage
       Then I should see "User: foo"

@@ -4,10 +4,12 @@ Feature: Submissions
   So that people can review it
 
     Background: 
-      Given a logged in user
-      And a shop "OWW" with "4" points to submit
+      Given a shop "OWW" with "4" points to submit
+      And a logged in user in the default shop
 
     Scenario: User posts writing and sees point count go down and the submission in dashboard and submissions browser.
+        When I go to the dashboard page
+        Then I should see "Review points: 4" within ".my_points"
         When I go to the submissions page
         And I follow "New Submission"
         Then I should be taken to the new submission page
@@ -23,8 +25,19 @@ Feature: Submissions
         Then I should see "My Title"
         When I go to the dashboard page
         Then I should see "My Title" within ".my_submissions"
+        Then I should see "Review points: 0" within ".my_points"
+        
 
     Scenario: User updates writing
+        Given a submission titled "My Submission"
+        And I go to the submission page for "My Submission"
+        And I follow "Edit"
+        Then I should be taken to the edit submission page for "My Submission"
+        When I fill in "Title" with "My Title"
+        And I press "Update Submission"
+        Then I should be taken to the submission page for "My Title"
+        
+
     Scenario: User tries to post writing without filling in required fields
     Scenario: User tries to posts writing with insufficient points, and can't
     Scenario: User tries to posts writing with insufficient posts, and can't but sees rules summary

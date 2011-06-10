@@ -1,5 +1,9 @@
 %h3 Home
 .my_submissions
-   %h4 My Submissions
-   - @submissions.each do |submission|
-      %p #{link_to submission.title, submission}
+  %h4 My Submissions
+  - @submissions.each do |submission|
+    %p #{link_to submission.title, submission}
+.my_points
+  %p
+    Review points:
+    = current_user.points_in(current_shop)
