@@ -31,6 +31,8 @@ Given /^I am signed up as "(.*)\/(.*)"$/ do |email, password|
   And %{I fill in "Email" with "#{email}"}
   And %{I fill in "Password" with "#{password}"}
   And %{I fill in "Password confirmation" with "#{password}"}
+  email =~ /(.*)@/
+  And %{I fill in "Name" with "#{$1}"}
   And %{I press "Sign up"}
   Then %{I should see "You have signed up successfully."}
   And %{I am logout}
@@ -78,7 +80,7 @@ end
 Given /^a logged in user in the default shop$/ do
   Given %{I am signed up as "joe@email.com/password"}
   Given %{I sign in as "joe@email.com/password"}
-  u = User.find(:first, :conditions => { :email => 'joe@email.com' })
+  u = User.find(:first, :conditions => { :email => 'joe@email.com'})
   s = Shop.find(:first)
   raise "no shop to put user in!" if s.nil?
   u.shops << s

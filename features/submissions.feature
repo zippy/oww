@@ -22,7 +22,7 @@ Feature: Submissions
         Then I should be taken to the submission page for "My Title"
         And I should see "Lorem ipsum dolor"
         When I go to the submissions page
-        Then I should see "My Title"
+        Then I should see "My Title by joe"
         When I go to the dashboard page
         Then I should see "My Title" within ".my_submissions"
         Then I should see "Review points: 0" within ".my_points"

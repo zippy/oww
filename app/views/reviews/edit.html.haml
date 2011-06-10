@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @review
+= link_to 'Show',submission_review_path(@review.submission,@review)
 \|
-= link_to 'Back', reviews_path
+= link_to 'Back', submission_reviews_path(@review.submission)

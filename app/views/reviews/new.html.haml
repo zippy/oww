@@ -1,5 +1,7 @@
-%h1 New review
+%h1 
+  New review for
+  = @submission.title
 
 = render 'form'
 
-= link_to 'Back', reviews_path
+= link_to 'Back', submission_reviews_path(@submission)

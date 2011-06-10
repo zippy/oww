@@ -4,20 +4,22 @@
   %tr
     %th User
     %th Submission
-    %th Review
+    %th Created
+    %th Updated
     %th
     %th
     %th
 
   - @reviews.each do |review|
     %tr
-      %td= review.user_id
-      %td= review.submission_id
-      %td= review.review
-      %td= link_to 'Show', review
-      %td= link_to 'Edit', edit_review_path(review)
-      %td= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete
+      %td= review.user.name
+      %td= review.submission.title
+      %td= review.created_at
+      %td= review.updated_at
+      %td= link_to 'Show', submission_review_path(review.submission,review)
+      %td= link_to 'Edit', edit_submission_review_path(review.submission,review)
+      %td= link_to 'Destroy', [review.submission,review], :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Review', new_review_path
+= link_to 'New Review', new_submission_review_path

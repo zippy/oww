@@ -1,5 +1,7 @@
 class Shop
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   field :name, :type => String
   field :points_to_submit, :type => Integer, :default => 0
   field :dimensions, :type => Array

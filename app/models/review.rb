@@ -1,5 +1,7 @@
 class Review
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   field :user_id, :type => String
   field :submission_id, :type => String
   field :review, :type => String

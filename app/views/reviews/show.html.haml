@@ -2,14 +2,14 @@
 
 %p
   %b User:
-  = @review.user_id
+  = @review.user.name
 %p
   %b Submission:
-  = @review.submission_id
+  = @review.submission.title
 %p
   %b Review:
   = @review.review
 
-= link_to 'Edit', edit_review_path(@review)
+= link_to 'Edit', edit_submission_review_path(@review.submission,@review)
 \|
-= link_to 'Back', reviews_path
+= link_to 'Back', submission_reviews_path(@review.submission)

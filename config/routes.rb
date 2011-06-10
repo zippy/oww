@@ -1,9 +1,9 @@
 Oww::Application.routes.draw do
-  resources :reviews
-
   resources :shops
 
-  resources :submissions
+  resources :submissions do
+    resources :reviews
+  end
 
   #get \"users\/show\"
 

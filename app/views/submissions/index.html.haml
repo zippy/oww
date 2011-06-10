@@ -1,33 +1,14 @@
-%h1 Listing submissions
+%h1 Submissions
 
-%table
-  %tr
-    %th Title
-    %th User
-    %th Kind
-    %th Genre
-    %th Audience
-    %th Status
-    %th Author notes
-    %th Submission
-    %th
-    %th
-    %th
-
-  - @submissions.each do |submission|
-    %tr
-      %td= submission.title
-      %td= submission.user.name
-      %td= submission.kind
-      %td= submission.genre
-      %td= submission.audience
-      %td= submission.status
-      %td= submission.author_notes
-      %td= submission.submission
-      %td= link_to 'Show', submission
-      %td= link_to 'Edit', edit_submission_path(submission)
-      %td= link_to 'Destroy', submission, :confirm => 'Are you sure?', :method => :delete
-
+- @submissions.each do |submission|
+  %p
+    = link_to 'Read', submission
+    %b= submission.title
+    = "by #{submission.user.name} (submitted #{submission.created_at}, updated #{submission.updated_at}, #{submission.genre} #{submission.kind}, "
+    = submission.submission.split(/W+/).size
+    words)
+    = link_to 'Edit', edit_submission_path(submission)
+    = link_to 'Destroy', submission, :confirm => 'Are you sure?', :method => :delete
 %br
 
 = link_to 'New Submission', new_submission_path

@@ -22,7 +22,8 @@
 %p
   %b Submission:
   = @submission.submission
-
+= link_to 'Review', new_submission_review_path(@submission)
+\|
 = link_to 'Edit', edit_submission_path(@submission)
 \|
 = link_to 'Back', submissions_path

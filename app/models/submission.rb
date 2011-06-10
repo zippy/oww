@@ -8,6 +8,8 @@ class Submission
   AudienceSelect = [['Adult','adult'],['Adult Only','adult_only'],['Young Adult','young_adult'],['Children','children']]
   Audiences = AudienceSelect.map{|n,v| v}
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   field :title, :type => String
   field :user_id, :type => String
   field :kind, :type => String
