@@ -11,6 +11,7 @@ Oww::Application.routes.draw do
   resources :users, :only => :show
 
   match 'dashboard', :to => 'dashboard#index', :as => 'dashboard'
+  match 'sign_out_thanks', :to => 'home#sign_out_thanks', :as => 'sign_out_thanks'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
