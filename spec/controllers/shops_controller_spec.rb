@@ -20,9 +20,11 @@ require 'spec_helper'
 
 describe ShopsController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Shop. As you add validations to Shop, be sure to
-  # update the return value of this method accordingly.
+  before (:each) do
+    @user = Factory(:user)
+    sign_in @user
+  end
+
   def valid_attributes
     { 
       :name => "OWW SFF",

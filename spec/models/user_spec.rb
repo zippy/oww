@@ -109,6 +109,11 @@ describe User do
       @user.submissions << @sub
       @user.submissions.should == [@sub]
     end
+    it "should be able to have many reviews" do
+      @review = Review.create!(:review => 'Text of review',:submission_id => @sub.id, :user_id => @user.id)
+      @user.reviews << @reviews
+      @user.reviews.should == [@review]
+    end
   end
   
   describe "shop relations" do

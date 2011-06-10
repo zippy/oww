@@ -1,4 +1,6 @@
 Oww::Application.routes.draw do
+  resources :reviews
+
   resources :shops
 
   resources :submissions

@@ -23,4 +23,5 @@ class Submission
   validates_inclusion_of :audience, :in => Audiences
   belongs_to :user
   belongs_to :shop
+  has_many :reviews
 end
