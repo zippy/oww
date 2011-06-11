@@ -38,7 +38,7 @@ describe ReviewsController do
   describe "GET index" do
     it "assigns all reviews as @reviews" do
       review = Review.create! valid_attributes
-      get :index
+      get :index,:submission_id => @sub.id.to_s
       assigns(:reviews).should eq([review])
     end
   end
@@ -46,14 +46,14 @@ describe ReviewsController do
   describe "GET show" do
     it "assigns the requested review as @review" do
       review = Review.create! valid_attributes
-      get :show, :id => review.id.to_s
+      get :show, :id => review.id.to_s,:submission_id => @sub.id.to_s
       assigns(:review).should eq(review)
     end
   end
 
   describe "GET new" do
     it "assigns a new review as @review" do
-      get :new
+      get :new,:submission_id => @sub.id.to_s
       assigns(:review).should be_a_new(Review)
     end
   end
@@ -61,7 +61,7 @@ describe ReviewsController do
   describe "GET edit" do
     it "assigns the requested review as @review" do
       review = Review.create! valid_attributes
-      get :edit, :id => review.id.to_s
+      get :edit, :id => review.id.to_s,:submission_id => @sub.id.to_s
       assigns(:review).should eq(review)
     end
   end
@@ -70,19 +70,19 @@ describe ReviewsController do
     describe "with valid params" do
       it "creates a new Review" do
         expect {
-          post :create, :review => valid_attributes
+          post :create, :review => valid_attributes,:submission_id => @sub.id.to_s
         }.to change(Review, :count).by(1)
       end
 
       it "assigns a newly created review as @review" do
-        post :create, :review => valid_attributes
+        post :create, :review => valid_attributes,:submission_id => @sub.id.to_s
         assigns(:review).should be_a(Review)
         assigns(:review).should be_persisted
       end
 
-      it "redirects to the created review" do
-        post :create, :review => valid_attributes
-        response.should redirect_to(Review.last)
+      it "redirects to the submission reviews" do
+        post :create, :review => valid_attributes,:submission_id => @sub.id.to_s
+        response.should redirect_to(submission_reviews_path(@sub))
       end
     end
 
@@ -90,14 +90,14 @@ describe ReviewsController do
       it "assigns a newly created but unsaved review as @review" do
         # Trigger the behavior that occurs when invalid params are submitted
         Review.any_instance.stub(:save).and_return(false)
-        post :create, :review => {}
+        post :create, :review => {},:submission_id => @sub.id.to_s
         assigns(:review).should be_a_new(Review)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Review.any_instance.stub(:save).and_return(false)
-        post :create, :review => {}
+        post :create, :review => {},:submission_id => @sub.id.to_s
         response.should render_template("new")
       end
     end
@@ -112,19 +112,19 @@ describe ReviewsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Review.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => review.id, :review => {'these' => 'params'}
+        put :update, :id => review.id, :review => {'these' => 'params'},:submission_id => @sub.id.to_s
       end
 
       it "assigns the requested review as @review" do
         review = Review.create! valid_attributes
-        put :update, :id => review.id, :review => valid_attributes
+        put :update, :id => review.id, :review => valid_attributes,:submission_id => @sub.id.to_s
         assigns(:review).should eq(review)
       end
 
       it "redirects to the review" do
         review = Review.create! valid_attributes
-        put :update, :id => review.id, :review => valid_attributes
-        response.should redirect_to(review)
+        put :update, :id => review.id, :review => valid_attributes,:submission_id => @sub.id.to_s
+        response.should redirect_to(submission_reviews_path(@sub))
       end
     end
 
@@ -133,7 +133,7 @@ describe ReviewsController do
         review = Review.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Review.any_instance.stub(:save).and_return(false)
-        put :update, :id => review.id.to_s, :review => {}
+        put :update, :id => review.id.to_s, :review => {},:submission_id => @sub.id.to_s
         assigns(:review).should eq(review)
       end
 
@@ -141,7 +141,7 @@ describe ReviewsController do
         review = Review.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Review.any_instance.stub(:save).and_return(false)
-        put :update, :id => review.id.to_s, :review => {}
+        put :update, :id => review.id.to_s, :review => {},:submission_id => @sub.id.to_s
         response.should render_template("edit")
       end
     end
@@ -151,14 +151,14 @@ describe ReviewsController do
     it "destroys the requested review" do
       review = Review.create! valid_attributes
       expect {
-        delete :destroy, :id => review.id.to_s
+        delete :destroy, :id => review.id.to_s,:submission_id => @sub.id.to_s
       }.to change(Review, :count).by(-1)
     end
 
     it "redirects to the reviews list" do
       review = Review.create! valid_attributes
-      delete :destroy, :id => review.id.to_s
-      response.should redirect_to(reviews_url)
+      delete :destroy, :id => review.id.to_s,:submission_id => @sub.id.to_s
+      response.should redirect_to(submission_reviews_path(@sub))
     end
   end
 

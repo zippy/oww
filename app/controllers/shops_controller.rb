@@ -48,4 +48,11 @@ class ShopsController < ApplicationController
     @shop.destroy
     respond_with @shop
   end
+  
+  # GET /shops/1/no_points
+  def no_points
+    @shop = Shop.find(params[:id])
+    respond_with @shop
+  end
+  
 end

@@ -4,7 +4,7 @@ Feature: Submissions
   So that people can review it
 
     Background: 
-      Given a shop "OWW" with "4" points to submit
+      Given a shop "OWW" with 4 points to submit
       And a logged in user in the default shop
 
     Scenario: User posts writing and sees point count go down and the submission in dashboard and submissions browser.
@@ -38,7 +38,16 @@ Feature: Submissions
         Then I should be taken to the submission page for "My Title"
         
 
-    Scenario: User tries to post writing without filling in required fields
     Scenario: User tries to posts writing with insufficient points, and can't
-    Scenario: User tries to posts writing with insufficient posts, and can't but sees rules summary
+        Given that I have 0 points in "OWW"
+        And I go to the new submission page
+        Then I should be taken to the insufficient points page for "OWW"
+        And I should see "Sorry, you need at least 4 points to post a submission."
+        
+    Scenario: User tries to post writing without filling in required fields
+        When I go to the new submission page
+        And I press "Post Submission"
+        And I should see "errors prohibited this submission from being saved"
+        
+        @pending
     Scenario: Submission archiving?

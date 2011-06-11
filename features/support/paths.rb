@@ -34,7 +34,9 @@ module NavigationHelpers
     when /the reviews page for "([^\"]*)"/
       s = Submission.first(conditions: { title: $1 })
       "/submissions/#{s.id}/reviews"
-       
+    when /the reviewer history page for "([^\"]*)"/
+       u = User.first(conditions: { name: $1 })
+       "/users/#{u.id}/reviewer_history"
 
     when /the shops page/
       '/shops'
@@ -43,6 +45,9 @@ module NavigationHelpers
     when /the shop page for "([^\"]*)"/
       s = Shop.first(conditions: { name: $1 })
       "/shops/#{s.id}"
+    when /the insufficient points page for "([^\"]*)"/
+      s = Shop.first(conditions: { name: $1 })
+      "/shops/#{s.id}/no_points"
       
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

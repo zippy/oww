@@ -1,5 +1,9 @@
 Oww::Application.routes.draw do
-  resources :shops
+  resources :shops do
+    member do
+      get 'no_points'
+    end
+  end
 
   resources :submissions do
     resources :reviews
@@ -10,7 +14,11 @@ Oww::Application.routes.draw do
   root :to => "home#index"
 
   devise_for :users
-  resources :users, :only => :show
+  resources :users, :only => :show do
+    member do
+      get :reviewer_history
+    end
+  end
 
   match 'dashboard', :to => 'dashboard#index', :as => 'dashboard'
   match 'sign_out_thanks', :to => 'home#sign_out_thanks', :as => 'sign_out_thanks'

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Shop do
   before(:each) do
     @attr = { 
-      :name => "OWW SFF",
+      :name => "Some shop",
       :points_to_submit => 4,
     }
   end

@@ -16,7 +16,11 @@ class SubmissionsController < ApplicationController
   # GET /submissions/new
   def new
     @submission = Submission.new
-    respond_with @submission
+    if !current_user.can_submit_in(current_shop)
+      redirect_to no_points_shop_path(current_shop)
+    else
+      respond_with @submission
+    end
   end
 
   # GET /submissions/1/edit

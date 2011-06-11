@@ -111,7 +111,6 @@ describe User do
     end
     it "should be able to have many reviews" do
       @review = Review.create!(:review => 'Text of review',:submission_id => @sub.id, :user_id => @user.id)
-      @user.reviews << @reviews
       @user.reviews.should == [@review]
     end
   end
@@ -119,7 +118,8 @@ describe User do
   describe "shop relations" do
     
     before(:each) do
-      @shop = Factory(:shop)
+      @sub = Factory(:submission)
+      @shop = @sub.shop
       @user = User.create!(@attr)
       @user.shops << @shop
     end
@@ -128,6 +128,10 @@ describe User do
     end
     it "should start with undefined points in a shop" do
       @user.points_in(@shop).should == nil
+    end
+    it "should set points" do
+      @user.set_points_for(@shop,123)
+      @user.points_in(@shop).should == 123
     end
     it "should get points for reviewing" do
       @user.adjust_points_for(@shop,:reviewing)
@@ -140,7 +144,19 @@ describe User do
     end
     it "should persist points" do
       @user.adjust_points_for(@shop,:reviewing)
-      User.first.points_in(@shop).should == 4
+      User.find(:first,:conditions =>{:name => 'Example User'}).points_in(@shop).should == 4
+    end
+    it "should check ability to post in a shop" do
+      @user.set_points_for(@shop,3)
+      @user.can_submit_in(@shop).should == false
+      @user.set_points_for(@shop,4)
+      @user.can_submit_in(@shop).should == true
+    end
+    it "should be able to get the reviews in a shop" do
+      @review = Review.create!(:review => 'Text of review',:submission_id => @sub.id, :user_id => @user.id)
+      @user.reviews_in(@shop).should == [@review]
+      @s = Shop.create!({:name => "Other Shop",:points_to_submit => 1})
+      @user.reviews_in(@s).should == []
     end
   end
 

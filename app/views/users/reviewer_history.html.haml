@@ -1,0 +1,12 @@
+%h1 Reviewer History for #{@user.name}
+Number of reviews currently online: #{@reviews.size}
+#reviewer_history
+  - @reviews.each do |review|
+    %p
+      - if review.submission
+        = link_to(review.submission.title,review.submission)
+        by #{review.submission.user.name}, 
+      - else
+        "<i>Missing Submission!</i>"
+      reviewed
+      = review.updated_at

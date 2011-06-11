@@ -7,3 +7,9 @@
   %p
     Review points:
     = current_user.points_in(current_shop)
+.my_review_count
+  %p
+    Review count:
+    = current_user.reviews_in(current_shop).size
+
+= link_to("Your reviewer history",reviewer_history_user_path(current_user))

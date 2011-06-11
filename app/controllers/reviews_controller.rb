@@ -54,6 +54,6 @@ class ReviewsController < ApplicationController
     @submission = Submission.find(params[:submission_id])
     @review = Review.find(params[:id])
     @review.destroy
-    respond_with @review
+    respond_with @submission,@review
   end
 end
