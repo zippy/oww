@@ -3,4 +3,5 @@ Feature: Homepage
   A non-user
   Should see cools stuff on the home-page
 
+  @pending
     Scenario: ?

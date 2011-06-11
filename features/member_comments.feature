@@ -3,4 +3,5 @@ Feature: Member Comments
     A user
     Should be able to send in comments about the site
 
+    @pending
       Scenario: User sends a "member comment"

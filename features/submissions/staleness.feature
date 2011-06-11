@@ -3,4 +3,5 @@ Feature: Submissions Staleness Prevention
   A user
   Should be notified about stale submissions
 
+  @pending
     Scenario: User gets an e-mail about Submissions going stale.
